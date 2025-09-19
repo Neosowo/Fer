@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ola</title>
+    <title>Te amo</title>
     <link rel="icon" type="image/webp" href="assets/hearth.webp">
     <link rel="shortcut icon" type="image/webp" href="assets/hearth.webp">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
        @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
         * {
@@ -28,7 +27,6 @@
             padding: 0;
         }
 
-        /* Video de fondo */
         .video-background {
             position: fixed;
             top: 0;
@@ -40,7 +38,6 @@
             filter: blur(13px);
         }
 
-        /* Overlay para mejorar la legibilidad */
         .video-overlay {
             position: fixed;
             top: 0;
@@ -64,7 +61,6 @@
             display: none;
         }
 
-        /* Imagen de gatitos en el suelo */
         .cats-image {
             position: fixed;
             bottom: 0;
@@ -112,7 +108,6 @@
             }
         }
 
-        /* Título principal */
         .main-title {
 
             font-size: clamp(3rem, 8vw, 5rem);
@@ -124,7 +119,6 @@
             letter-spacing: -0.02em;
         }
 
-        /* Subtítulo */
         .subtitle {
 
             font-size: clamp(1rem, 3vw, 1.3rem);
@@ -135,7 +129,6 @@
             text-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Botón con imagen */
         .elegant-button {
             display: inline-block;
             background: none;
@@ -163,7 +156,6 @@
         }
 
 
-        /* Sección del mensaje */
         .message-section {
             min-height: 100vh;
             display: none;
@@ -302,8 +294,6 @@
             font-weight: 400;
         }
 
-
-        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 20px 15px;
@@ -438,7 +428,6 @@
             }
         }
 
-        /* Animación de entrada */
         .container > * {
             animation: fadeInUp 1s ease-out forwards;
             opacity: 0;
@@ -464,7 +453,6 @@
             }
         }
 
-        /* Animación de corazones */
         .heart-particle {
             position: fixed;
             width: 20px;
@@ -553,22 +541,17 @@
     </div>
 
     <script>
-        // Función para mostrar el mensaje
         function scrollToMessage() {
             const container = document.querySelector('.container');
             const messageSection = document.getElementById('message-section');
             const catsImage = document.querySelector('.cats-image');
             
-            // Ocultar el contenedor inicial
             container.classList.add('hidden');
             
-            // Mostrar la sección del mensaje
             messageSection.classList.add('show');
             
-            // Mostrar gatitos
             catsImage.classList.add('show');
             
-            // Scroll suave a la sección
             setTimeout(() => {
                 messageSection.scrollIntoView({
                     behavior: 'smooth',
@@ -577,20 +560,17 @@
             }, 100);
         }
 
-        // Función para crear corazones
         function createHearts() {
             const catsImage = document.querySelector('.cats-image');
             const rect = catsImage.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
             
-            // Crear múltiples corazones
             for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
                     heart.className = 'heart-particle';
                     
-                    // Posición aleatoria alrededor de los gatos (más dispersa)
                     const angle = (i / 8) * Math.PI * 2;
                     const distance = 60 + Math.random() * 40;
                     const x = centerX + Math.cos(angle) * distance;
@@ -599,18 +579,15 @@
                     heart.style.left = x + 'px';
                     heart.style.top = y + 'px';
                     
-                    // Tamaño aleatorio
                     const size = 15 + Math.random() * 10;
                     heart.style.width = size + 'px';
                     heart.style.height = size + 'px';
                     
-                    // Duración aleatoria
                     const duration = 2 + Math.random() * 2;
                     heart.style.animationDuration = duration + 's';
                     
                     document.body.appendChild(heart);
                     
-                    // Remover el corazón después de la animación
                     setTimeout(() => {
                         if (heart.parentNode) {
                             heart.parentNode.removeChild(heart);
@@ -620,12 +597,10 @@
             }
         }
 
-        // Función para cerrar el modal
         function closeMessage() {
             document.getElementById('messageModal').style.display = 'none';
         }
 
-        // Función para enviar el mensaje
         function sendMessage() {
             const message = document.getElementById('messageText').value;
             if (message.trim()) {
@@ -637,7 +612,6 @@
             }
         }
 
-        // Cerrar modal al hacer clic fuera
         window.onclick = function(event) {
             const modal = document.getElementById('messageModal');
             if (event.target == modal) {
@@ -647,7 +621,6 @@
     </script>
 
     <style>
-        /* Estilos del modal */
         .modal {
             position: fixed;
             z-index: 1000;
@@ -745,7 +718,6 @@
             transform: translateY(-2px);
         }
 
-        /* Selección de texto rosa */
         ::selection {
             background: rgba(255, 192, 203, 0.8);
             color: white;

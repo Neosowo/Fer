@@ -278,7 +278,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
+
             gap: 20px;
         }
 
@@ -458,7 +458,7 @@
             }
 
             .page-navigation {
-                margin-top: 15px;
+
                 gap: 15px;
             }
 
@@ -554,16 +554,13 @@
     </style>
 </head>
 <body>
-    <!-- Video de fondo -->
     <video class="video-background" autoplay muted loop playsinline>
         <source src="assets/background.mp4" type="video/mp4">
         Tu navegador no soporta videos HTML5.
     </video>
     
-    <!-- Overlay para mejorar legibilidad -->
     <div class="video-overlay"></div>
 
-    <!-- Imagen de gatitos en el suelo -->
     <img src="assets/cats.webp" alt="Gatitos" class="cats-image" onclick="createHearts()">
 
 
@@ -575,7 +572,6 @@
         </button>
     </div>
 
-    <!-- Sección del mensaje especial -->
     <section id="message-section" class="message-section">
         <div class="message-container">
             <div class="message-card">
@@ -634,7 +630,6 @@
         </div>
     </section>
 
-    <!-- Modal para el mensaje -->
     <div id="messageModal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close" onclick="closeMessage()">&times;</span>

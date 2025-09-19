@@ -63,7 +63,7 @@
 
         .cats-image {
             position: fixed;
-            bottom: 10px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: clamp(80px, 10vw, 120px);
@@ -81,7 +81,6 @@
             -ms-user-select: none;
             user-select: none;
             outline: none;
-            pointer-events: auto;
         }
 
         .cats-image:hover {
@@ -138,18 +137,6 @@
             transition: all 0.3s ease;
             position: relative;
             padding: 0;
-            outline: none;
-            box-shadow: none;
-        }
-
-        .elegant-button:focus {
-            outline: none;
-            box-shadow: none;
-        }
-
-        .elegant-button:focus-visible {
-            outline: none;
-            box-shadow: none;
         }
 
         .elegant-button img {
@@ -157,38 +144,15 @@
             height: auto;
             transition: all 0.3s ease;
             filter: brightness(1) saturate(1);
-            border: none;
-            outline: none;
-            box-shadow: none;
         }
 
         .elegant-button:hover img {
-            filter: brightness(1.1) saturate(1.2);
-            transform: scale(1.15) rotate(2deg);
-            border: none;
-            outline: none;
-            box-shadow: none;
+            filter: brightness(0.8) saturate(1.5) hue-rotate(320deg);
+            transform: scale(1.05);
         }
 
         .elegant-button:active img {
             transform: scale(0.98);
-            border: none;
-            outline: none;
-            box-shadow: none;
-        }
-
-        .elegant-button:hover {
-            background: none;
-            border: none;
-            outline: none;
-            box-shadow: none;
-        }
-
-        .elegant-button:active {
-            background: none;
-            border: none;
-            outline: none;
-            box-shadow: none;
         }
 
 
@@ -199,30 +163,25 @@
             justify-content: center;
             padding: 40px 20px;
             position: relative;
-            perspective: 1000px;
         }
 
         .message-section.show {
             display: flex;
-            animation: messageSlideIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: messageSlideIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         @keyframes messageSlideIn {
             0% {
                 opacity: 0;
-                transform: translateY(100px) scale(0.8) rotateX(20deg);
+                transform: translateY(50px) scale(0.95);
             }
-            30% {
-                opacity: 0.5;
-                transform: translateY(-20px) scale(1.05) rotateX(-5deg);
-            }
-            60% {
-                opacity: 0.8;
-                transform: translateY(10px) scale(0.98) rotateX(2deg);
+            50% {
+                opacity: 0.7;
+                transform: translateY(-10px) scale(1.02);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1) rotateX(0deg);
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -242,94 +201,15 @@
             position: relative;
             overflow: hidden;
             animation: cardFloat 3s ease-in-out infinite;
-            transform-style: preserve-3d;
         }
 
         @keyframes cardFloat {
             0%, 100% {
-                transform: translateY(0px) rotateX(0deg);
+                transform: translateY(0px);
             }
             50% {
-                transform: translateY(-8px) rotateX(2deg);
+                transform: translateY(-5px);
             }
-        }
-
-        /* Navegación de páginas */
-        .page-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-            gap: 20px;
-        }
-
-        .nav-button {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: "DynaPuff", system-ui;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .nav-button:active {
-            transform: translateY(0) scale(0.98);
-        }
-
-        .nav-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .page-indicator {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .page-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .page-dot.active {
-            background: rgba(255, 255, 255, 0.8);
-            transform: scale(1.2);
-        }
-
-        /* Efecto de typing */
-        .typing-text {
-            overflow: hidden;
-            border-right: 2px solid rgba(255, 255, 255, 0.7);
-            white-space: nowrap;
-            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: rgba(255, 255, 255, 0.7); }
         }
 
         .message-card::before {
@@ -359,7 +239,29 @@
 
         .message-content {
             text-align: left;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            position: relative;
+            min-height: 150px;
+        }
+
+        .message-page {
+            display: none;
+            animation: pageSlideIn 0.5s ease-out;
+        }
+
+        .message-page.active {
+            display: block;
+        }
+
+        @keyframes pageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .message-text {
@@ -369,47 +271,65 @@
             margin-bottom: 20px;
             text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
             text-align: justify;
-            display: none;
+            text-justify: inter-word;
         }
 
-        .message-text.active {
-            display: block;
-            animation: textReveal 0.8s ease-out forwards;
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            gap: 20px;
         }
 
-        @keyframes textReveal {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Efectos de hover mejorados */
-        .elegant-button:hover {
-            transform: translateY(-3px) scale(1.08);
-            filter: brightness(0.9) saturate(1.8) hue-rotate(330deg);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-
-        .cats-image:hover {
-            transform: translateX(-50%) scale(1.15) rotate(2deg);
-            opacity: 1;
-            filter: brightness(1.1) saturate(1.2);
+        .nav-button {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .nav-button:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px) scale(1.08);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-indicator {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .page-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .page-dot.active {
+            background: white;
+            transform: scale(1.2);
         }
 
         .message-signature {
             text-align: right;
-            margin-top: 40px;
+            margin-top: 20px;
             font-style: italic;
             animation: signatureSlide 1s ease-out 0.8s forwards;
             opacity: 0;
@@ -456,7 +376,6 @@
 
             .cats-image {
                 width: clamp(100px, 12vw, 140px);
-                bottom: 15px;
             }
 
 
@@ -512,7 +431,6 @@
 
             .cats-image {
                 width: clamp(80px, 10vw, 120px);
-                bottom: 20px;
             }
 
 
@@ -532,15 +450,26 @@
             }
 
             .message-text {
-                text-align: center;
+                text-align: justify;
+                text-justify: inter-word;
                 font-size: clamp(0.8rem, 2vw, 1rem);
                 line-height: 1.5;
                 margin-bottom: 12px;
             }
 
+            .page-navigation {
+                margin-top: 15px;
+                gap: 15px;
+            }
+
+            .nav-button {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+
             .message-signature {
                 text-align: center;
-                margin-top: 25px;
+                margin-top: 15px;
             }
 
             .message-signature p {
@@ -568,14 +497,6 @@
 
             .cats-image {
                 width: clamp(70px, 8vw, 100px);
-                bottom: 25px;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .cats-image {
-                width: clamp(60px, 7vw, 90px);
-                bottom: 30px;
             }
         }
 
@@ -630,32 +551,6 @@
                 transform: translateY(-100px) scale(0.5) rotate(360deg);
             }
         }
-
-        /* Efectos de sonido visuales */
-        .sound-wave {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            animation: soundPulse 0.6s ease-out;
-        }
-
-        @keyframes soundPulse {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(20);
-                opacity: 0;
-            }
-        }
-
-        /* Parallax */
-        .parallax-element {
-            will-change: transform;
-        }
     </style>
 </head>
 <body>
@@ -669,12 +564,12 @@
     <div class="video-overlay"></div>
 
     <!-- Imagen de gatitos en el suelo -->
-    <img src="assets/cats.webp" alt="Gatitos" class="cats-image" onclick="createHearts()" onmousedown="event.preventDefault()">
+    <img src="assets/cats.webp" alt="Gatitos" class="cats-image" onclick="createHearts()">
 
 
     <div class="container">
         <h1 class="main-title">Hola, <br></h1>
-        <p class="subtitle">Esto es para ti, mi amor</p>
+        <p class="subtitle">Rosas amarillas para iluminar tu día</p>
         <button class="elegant-button" onclick="scrollToMessage()">
             <img src="assets/read.webp" alt="Leer mensaje">
         </button>
@@ -686,32 +581,54 @@
             <div class="message-card">
                 <h2 class="message-title">Para mi amor especial</h2>
                 <div class="message-content">
-                    <p class="message-text active" data-page="1">
-                        Querida mía, en este día especial quiero decirte que eres la luz que ilumina cada uno de mis días. 
-                        Tu sonrisa es como el sol que calienta mi corazón, y tu amor es el regalo más hermoso que he recibido.
-                    </p>
-                    <p class="message-text" data-page="2">
-                        Cada momento a tu lado es una aventura, cada conversación es una melodía, y cada abrazo es mi refugio. 
-                        Eres mi compañera de vida, mi mejor amiga, y el amor de mi existencia.
-                    </p>
-                    <p class="message-text" data-page="3">
-                        Que este día esté lleno de momentos mágicos y que nuestro amor siga creciendo como las flores más hermosas. 
-                        Te amo infinitamente y para siempre.
-                    </p>
-                    <div class="message-signature">
-                        <p>Con todo mi amor,</p>
-                        <p class="signature-name">Tu novio</p>
+                    <div class="message-page active" data-page="1">
+                        <p class="message-text">
+                            Querida mía, en este día especial quiero decirte que eres la luz que ilumina cada uno de mis días. 
+                            Tu sonrisa es como el sol que calienta mi corazón, y tu amor es el regalo más hermoso que he recibido.
+                        </p>
+                    </div>
+                    
+                    <div class="message-page" data-page="2">
+                        <p class="message-text">
+                            Cada momento a tu lado es una aventura, cada conversación es una melodía, y cada abrazo es mi refugio. 
+                            Eres mi compañera de vida, mi mejor amiga, y el amor de mi existencia.
+                        </p>
+                    </div>
+                    
+                    <div class="message-page" data-page="3">
+                        <p class="message-text">
+                            Que este día esté lleno de momentos mágicos y que nuestro amor siga creciendo como las flores más hermosas. 
+                            Te amo infinitamente y para siempre.
+                        </p>
+                        <div class="message-signature">
+                            <p>Con todo mi amor,</p>
+                            <p class="signature-name">Tu novio</p>
+                        </div>
                     </div>
                 </div>
-                
+
                 <div class="page-navigation">
-                    <button class="nav-button" id="prevBtn" onclick="changePage(-1)">← Anterior</button>
+                    <button class="nav-button" id="prevBtn" onclick="changePage(-1)">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5"></path>
+                            <path d="M12 19l-7-7 7-7"></path>
+                        </svg>
+                        Anterior
+                    </button>
+                    
                     <div class="page-indicator">
                         <div class="page-dot active" data-page="1"></div>
                         <div class="page-dot" data-page="2"></div>
                         <div class="page-dot" data-page="3"></div>
                     </div>
-                    <button class="nav-button" id="nextBtn" onclick="changePage(1)">Siguiente →</button>
+                    
+                    <button class="nav-button" id="nextBtn" onclick="changePage(1)">
+                        Siguiente
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14"></path>
+                            <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -742,8 +659,9 @@
             
             catsImage.classList.add('show');
             
-            // Efecto de sonido visual
-            createSoundWave();
+            // Reset to first page
+            currentPage = 1;
+            updatePageDisplay();
             
             setTimeout(() => {
                 messageSection.scrollIntoView({
@@ -756,31 +674,28 @@
         function changePage(direction) {
             const newPage = currentPage + direction;
             
-            if (newPage < 1 || newPage > totalPages) return;
-            
-            // Efecto de sonido visual
-            createSoundWave();
-            
-            // Ocultar página actual
-            const currentText = document.querySelector(`.message-text[data-page="${currentPage}"]`);
-            const currentDot = document.querySelector(`.page-dot[data-page="${currentPage}"]`);
-            
-            currentText.classList.remove('active');
-            currentDot.classList.remove('active');
-            
-            // Mostrar nueva página
-            currentPage = newPage;
-            const newText = document.querySelector(`.message-text[data-page="${currentPage}"]`);
-            const newDot = document.querySelector(`.page-dot[data-page="${currentPage}"]`);
-            
-            newText.classList.add('active');
-            newDot.classList.add('active');
-            
-            // Actualizar botones
-            updateNavigationButtons();
+            if (newPage >= 1 && newPage <= totalPages) {
+                // Hide current page
+                const currentPageElement = document.querySelector(`.message-page[data-page="${currentPage}"]`);
+                currentPageElement.classList.remove('active');
+                
+                // Show new page
+                currentPage = newPage;
+                const newPageElement = document.querySelector(`.message-page[data-page="${currentPage}"]`);
+                newPageElement.classList.add('active');
+                
+                updatePageDisplay();
+            }
         }
 
-        function updateNavigationButtons() {
+        function updatePageDisplay() {
+            // Update page dots
+            document.querySelectorAll('.page-dot').forEach(dot => {
+                dot.classList.remove('active');
+            });
+            document.querySelector(`.page-dot[data-page="${currentPage}"]`).classList.add('active');
+            
+            // Update navigation buttons
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             
@@ -788,65 +703,11 @@
             nextBtn.disabled = currentPage === totalPages;
         }
 
-        function createSoundWave() {
-            const wave = document.createElement('div');
-            wave.className = 'sound-wave';
-            wave.style.left = '50%';
-            wave.style.top = '50%';
-            wave.style.position = 'fixed';
-            wave.style.zIndex = '9999';
-            document.body.appendChild(wave);
-            
-            setTimeout(() => {
-                if (wave.parentNode) {
-                    wave.parentNode.removeChild(wave);
-                }
-            }, 600);
-        }
-
-        // Efecto de parallax
-        function initParallax() {
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const parallaxElements = document.querySelectorAll('.parallax-element');
-                
-                parallaxElements.forEach((element, index) => {
-                    const speed = 0.5 + (index * 0.1);
-                    element.style.transform = `translateY(${scrolled * speed}px)`;
-                });
-            });
-        }
-
-        // Efecto de typing
-        function typeText(element, text, speed = 50) {
-            element.innerHTML = '';
-            let i = 0;
-            
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            
-            type();
-        }
-
-        function createHearts(event) {
-            // Prevenir que interfiera con otros elementos
-            if (event) {
-                event.stopPropagation();
-                event.preventDefault();
-            }
-            
+        function createHearts() {
             const catsImage = document.querySelector('.cats-image');
             const rect = catsImage.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
-            
-            // Efecto de sonido visual
-            createSoundWave();
             
             for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
@@ -878,16 +739,6 @@
                 }, i * 100);
             }
         }
-
-        // Inicializar efectos
-        document.addEventListener('DOMContentLoaded', function() {
-            initParallax();
-            updateNavigationButtons();
-            
-            // Agregar clase parallax a elementos
-            const parallaxElements = document.querySelectorAll('.cats-image, .message-card');
-            parallaxElements.forEach(el => el.classList.add('parallax-element'));
-        });
 
         function closeMessage() {
             document.getElementById('messageModal').style.display = 'none';

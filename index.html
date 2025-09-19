@@ -63,7 +63,7 @@
 
         .cats-image {
             position: fixed;
-            bottom: 0;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             width: clamp(80px, 10vw, 120px);
@@ -81,6 +81,7 @@
             -ms-user-select: none;
             user-select: none;
             outline: none;
+            pointer-events: auto;
         }
 
         .cats-image:hover {
@@ -455,6 +456,7 @@
 
             .cats-image {
                 width: clamp(100px, 12vw, 140px);
+                bottom: 15px;
             }
 
 
@@ -510,6 +512,7 @@
 
             .cats-image {
                 width: clamp(80px, 10vw, 120px);
+                bottom: 20px;
             }
 
 
@@ -565,6 +568,14 @@
 
             .cats-image {
                 width: clamp(70px, 8vw, 100px);
+                bottom: 25px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .cats-image {
+                width: clamp(60px, 7vw, 90px);
+                bottom: 30px;
             }
         }
 
@@ -658,12 +669,12 @@
     <div class="video-overlay"></div>
 
     <!-- Imagen de gatitos en el suelo -->
-    <img src="assets/cats.webp" alt="Gatitos" class="cats-image" onclick="createHearts()">
+    <img src="assets/cats.webp" alt="Gatitos" class="cats-image" onclick="createHearts()" onmousedown="event.preventDefault()">
 
 
     <div class="container">
         <h1 class="main-title">Hola, <br></h1>
-        <p class="subtitle">Rosas amarillas para iluminar tu día</p>
+        <p class="subtitle">Esto es para ti, mi amor</p>
         <button class="elegant-button" onclick="scrollToMessage()">
             <img src="assets/read.webp" alt="Leer mensaje">
         </button>
@@ -822,7 +833,13 @@
             type();
         }
 
-        function createHearts() {
+        function createHearts(event) {
+            // Prevenir que interfiera con otros elementos
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+            
             const catsImage = document.querySelector('.cats-image');
             const rect = catsImage.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;

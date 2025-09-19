@@ -137,6 +137,18 @@
             transition: all 0.3s ease;
             position: relative;
             padding: 0;
+            outline: none;
+            box-shadow: none;
+        }
+
+        .elegant-button:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .elegant-button:focus-visible {
+            outline: none;
+            box-shadow: none;
         }
 
         .elegant-button img {
@@ -144,15 +156,38 @@
             height: auto;
             transition: all 0.3s ease;
             filter: brightness(1) saturate(1);
+            border: none;
+            outline: none;
+            box-shadow: none;
         }
 
         .elegant-button:hover img {
-            filter: brightness(0.8) saturate(1.5) hue-rotate(320deg);
-            transform: scale(1.05);
+            filter: brightness(1.1) saturate(1.2);
+            transform: scale(1.15) rotate(2deg);
+            border: none;
+            outline: none;
+            box-shadow: none;
         }
 
         .elegant-button:active img {
             transform: scale(0.98);
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        .elegant-button:hover {
+            background: none;
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        .elegant-button:active {
+            background: none;
+            border: none;
+            outline: none;
+            box-shadow: none;
         }
 
 
@@ -163,25 +198,30 @@
             justify-content: center;
             padding: 40px 20px;
             position: relative;
+            perspective: 1000px;
         }
 
         .message-section.show {
             display: flex;
-            animation: messageSlideIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: messageSlideIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         @keyframes messageSlideIn {
             0% {
                 opacity: 0;
-                transform: translateY(50px) scale(0.95);
+                transform: translateY(100px) scale(0.8) rotateX(20deg);
             }
-            50% {
-                opacity: 0.7;
-                transform: translateY(-10px) scale(1.02);
+            30% {
+                opacity: 0.5;
+                transform: translateY(-20px) scale(1.05) rotateX(-5deg);
+            }
+            60% {
+                opacity: 0.8;
+                transform: translateY(10px) scale(0.98) rotateX(2deg);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0) scale(1) rotateX(0deg);
             }
         }
 
@@ -201,15 +241,94 @@
             position: relative;
             overflow: hidden;
             animation: cardFloat 3s ease-in-out infinite;
+            transform-style: preserve-3d;
         }
 
         @keyframes cardFloat {
             0%, 100% {
-                transform: translateY(0px);
+                transform: translateY(0px) rotateX(0deg);
             }
             50% {
-                transform: translateY(-5px);
+                transform: translateY(-8px) rotateX(2deg);
             }
+        }
+
+        /* Navegación de páginas */
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .nav-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: "DynaPuff", system-ui;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-indicator {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .page-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .page-dot.active {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+
+        /* Efecto de typing */
+        .typing-text {
+            overflow: hidden;
+            border-right: 2px solid rgba(255, 255, 255, 0.7);
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: rgba(255, 255, 255, 0.7); }
         }
 
         .message-card::before {
@@ -243,27 +362,48 @@
         }
 
         .message-text {
-
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             line-height: 1.8;
             color: white;
             margin-bottom: 20px;
             text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
-            animation: textReveal 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
             text-align: justify;
+            display: none;
         }
 
-        .message-text:nth-child(1) { animation-delay: 0.2s; }
-        .message-text:nth-child(2) { animation-delay: 0.4s; }
-        .message-text:nth-child(3) { animation-delay: 0.6s; }
+        .message-text.active {
+            display: block;
+            animation: textReveal 0.8s ease-out forwards;
+        }
 
         @keyframes textReveal {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
+        }
+
+        /* Efectos de hover mejorados */
+        .elegant-button:hover {
+            transform: translateY(-3px) scale(1.08);
+            filter: brightness(0.9) saturate(1.8) hue-rotate(330deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .cats-image:hover {
+            transform: translateX(-50%) scale(1.15) rotate(2deg);
+            opacity: 1;
+            filter: brightness(1.1) saturate(1.2);
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px) scale(1.08);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
         }
 
         .message-signature {
@@ -479,6 +619,32 @@
                 transform: translateY(-100px) scale(0.5) rotate(360deg);
             }
         }
+
+        /* Efectos de sonido visuales */
+        .sound-wave {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: soundPulse 0.6s ease-out;
+        }
+
+        @keyframes soundPulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(20);
+                opacity: 0;
+            }
+        }
+
+        /* Parallax */
+        .parallax-element {
+            will-change: transform;
+        }
     </style>
 </head>
 <body>
@@ -509,15 +675,15 @@
             <div class="message-card">
                 <h2 class="message-title">Para mi amor especial</h2>
                 <div class="message-content">
-                    <p class="message-text">
+                    <p class="message-text active" data-page="1">
                         Querida mía, en este día especial quiero decirte que eres la luz que ilumina cada uno de mis días. 
                         Tu sonrisa es como el sol que calienta mi corazón, y tu amor es el regalo más hermoso que he recibido.
                     </p>
-                    <p class="message-text">
+                    <p class="message-text" data-page="2">
                         Cada momento a tu lado es una aventura, cada conversación es una melodía, y cada abrazo es mi refugio. 
                         Eres mi compañera de vida, mi mejor amiga, y el amor de mi existencia.
                     </p>
-                    <p class="message-text">
+                    <p class="message-text" data-page="3">
                         Que este día esté lleno de momentos mágicos y que nuestro amor siga creciendo como las flores más hermosas. 
                         Te amo infinitamente y para siempre.
                     </p>
@@ -525,6 +691,16 @@
                         <p>Con todo mi amor,</p>
                         <p class="signature-name">Tu novio</p>
                     </div>
+                </div>
+                
+                <div class="page-navigation">
+                    <button class="nav-button" id="prevBtn" onclick="changePage(-1)">← Anterior</button>
+                    <div class="page-indicator">
+                        <div class="page-dot active" data-page="1"></div>
+                        <div class="page-dot" data-page="2"></div>
+                        <div class="page-dot" data-page="3"></div>
+                    </div>
+                    <button class="nav-button" id="nextBtn" onclick="changePage(1)">Siguiente →</button>
                 </div>
             </div>
         </div>
@@ -541,6 +717,9 @@
     </div>
 
     <script>
+        let currentPage = 1;
+        const totalPages = 3;
+
         function scrollToMessage() {
             const container = document.querySelector('.container');
             const messageSection = document.getElementById('message-section');
@@ -552,6 +731,9 @@
             
             catsImage.classList.add('show');
             
+            // Efecto de sonido visual
+            createSoundWave();
+            
             setTimeout(() => {
                 messageSection.scrollIntoView({
                     behavior: 'smooth',
@@ -560,11 +742,94 @@
             }, 100);
         }
 
+        function changePage(direction) {
+            const newPage = currentPage + direction;
+            
+            if (newPage < 1 || newPage > totalPages) return;
+            
+            // Efecto de sonido visual
+            createSoundWave();
+            
+            // Ocultar página actual
+            const currentText = document.querySelector(`.message-text[data-page="${currentPage}"]`);
+            const currentDot = document.querySelector(`.page-dot[data-page="${currentPage}"]`);
+            
+            currentText.classList.remove('active');
+            currentDot.classList.remove('active');
+            
+            // Mostrar nueva página
+            currentPage = newPage;
+            const newText = document.querySelector(`.message-text[data-page="${currentPage}"]`);
+            const newDot = document.querySelector(`.page-dot[data-page="${currentPage}"]`);
+            
+            newText.classList.add('active');
+            newDot.classList.add('active');
+            
+            // Actualizar botones
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+        }
+
+        function createSoundWave() {
+            const wave = document.createElement('div');
+            wave.className = 'sound-wave';
+            wave.style.left = '50%';
+            wave.style.top = '50%';
+            wave.style.position = 'fixed';
+            wave.style.zIndex = '9999';
+            document.body.appendChild(wave);
+            
+            setTimeout(() => {
+                if (wave.parentNode) {
+                    wave.parentNode.removeChild(wave);
+                }
+            }, 600);
+        }
+
+        // Efecto de parallax
+        function initParallax() {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.parallax-element');
+                
+                parallaxElements.forEach((element, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+        }
+
+        // Efecto de typing
+        function typeText(element, text, speed = 50) {
+            element.innerHTML = '';
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
         function createHearts() {
             const catsImage = document.querySelector('.cats-image');
             const rect = catsImage.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
+            
+            // Efecto de sonido visual
+            createSoundWave();
             
             for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
@@ -596,6 +861,16 @@
                 }, i * 100);
             }
         }
+
+        // Inicializar efectos
+        document.addEventListener('DOMContentLoaded', function() {
+            initParallax();
+            updateNavigationButtons();
+            
+            // Agregar clase parallax a elementos
+            const parallaxElements = document.querySelectorAll('.cats-image, .message-card');
+            parallaxElements.forEach(el => el.classList.add('parallax-element'));
+        });
 
         function closeMessage() {
             document.getElementById('messageModal').style.display = 'none';

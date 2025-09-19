@@ -77,6 +77,14 @@
             opacity: 0.8;
             display: none;
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            outline: none;
         }
 
         .cats-image:hover {
@@ -139,7 +147,7 @@
         }
 
         .elegant-button img {
-            width: clamp(150px, 20vw, 250px);
+            width: clamp(200px, 25vw, 300px);
             height: auto;
             transition: all 0.3s ease;
             filter: brightness(1) saturate(1);
@@ -312,11 +320,11 @@
             }
             
             .elegant-button img {
-                width: clamp(130px, 16vw, 180px);
+                width: clamp(160px, 20vw, 220px);
             }
 
             .cats-image {
-                width: clamp(60px, 8vw, 90px);
+                width: clamp(100px, 12vw, 140px);
             }
 
 
@@ -367,11 +375,11 @@
             }
 
             .elegant-button img {
-                width: clamp(110px, 14vw, 150px);
+                width: clamp(140px, 18vw, 190px);
             }
 
             .cats-image {
-                width: clamp(50px, 6vw, 70px);
+                width: clamp(80px, 10vw, 120px);
             }
 
 
@@ -422,11 +430,11 @@
             }
 
             .elegant-button img {
-                width: clamp(90px, 12vw, 120px);
+                width: clamp(120px, 16vw, 160px);
             }
 
             .cats-image {
-                width: clamp(40px, 5vw, 60px);
+                width: clamp(70px, 8vw, 100px);
             }
         }
 
@@ -582,9 +590,9 @@
                     const heart = document.createElement('div');
                     heart.className = 'heart-particle';
                     
-                    // Posición aleatoria alrededor de los gatos
+                    // Posición aleatoria alrededor de los gatos (más dispersa)
                     const angle = (i / 8) * Math.PI * 2;
-                    const distance = 30 + Math.random() * 20;
+                    const distance = 60 + Math.random() * 40;
                     const x = centerX + Math.cos(angle) * distance;
                     const y = centerY + Math.sin(angle) * distance;
                     

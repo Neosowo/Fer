@@ -61,6 +61,133 @@
             display: none;
         }
 
+        /* Password Protection Styles */
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: passwordFadeIn 0.5s ease-out;
+        }
+
+        .password-modal.hidden {
+            display: none;
+        }
+
+        @keyframes passwordFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .password-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            animation: passwordSlideIn 0.6s ease-out;
+        }
+
+        @keyframes passwordSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .password-content h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .password-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .password-content input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .password-content input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .password-content input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .password-button {
+            background: linear-gradient(45deg, #FFB6C1, #FF69B4);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .password-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+        }
+
+        .password-button:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error-message.show {
+            opacity: 1;
+        }
+
         .cats-image {
             position: fixed;
             bottom: 0;
@@ -378,6 +505,34 @@
                 width: clamp(100px, 12vw, 140px);
             }
 
+            /* Password modal mobile styles */
+            .password-content {
+                padding: 30px 25px;
+                margin: 20px;
+                max-width: 350px;
+            }
+
+            .password-content h2 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .password-content p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            .password-content input {
+                padding: 12px 15px;
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+
+            .password-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
 
             .message-section {
                 padding: 20px 15px;
@@ -431,6 +586,42 @@
 
             .cats-image {
                 width: clamp(80px, 10vw, 120px);
+            }
+
+            /* Password modal small mobile styles */
+            .password-content {
+                padding: 25px 20px;
+                margin: 15px;
+                max-width: 320px;
+                border-radius: 15px;
+            }
+
+            .password-content h2 {
+                font-size: 1.6rem;
+                margin-bottom: 12px;
+            }
+
+            .password-content p {
+                font-size: 0.95rem;
+                margin-bottom: 18px;
+            }
+
+            .password-content input {
+                padding: 10px 12px;
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+                border-radius: 20px;
+            }
+
+            .password-button {
+                padding: 10px 25px;
+                font-size: 0.95rem;
+                border-radius: 20px;
+            }
+
+            .error-message {
+                font-size: 0.85rem;
+                margin-top: 12px;
             }
 
 
@@ -498,6 +689,42 @@
             .cats-image {
                 width: clamp(70px, 8vw, 100px);
             }
+
+            /* Password modal extra small mobile styles */
+            .password-content {
+                padding: 20px 15px;
+                margin: 10px;
+                max-width: 280px;
+                border-radius: 12px;
+            }
+
+            .password-content h2 {
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+            }
+
+            .password-content p {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+
+            .password-content input {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+                border-radius: 15px;
+            }
+
+            .password-button {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+                border-radius: 15px;
+            }
+
+            .error-message {
+                font-size: 0.8rem;
+                margin-top: 10px;
+            }
         }
 
         .container > * {
@@ -561,12 +788,23 @@
     
     <div class="video-overlay"></div>
 
+    <!-- Password Protection Modal -->
+    <div id="passwordModal" class="password-modal">
+        <div class="password-content">
+            <h2>Acceso Restringido</h2>
+            <p>Ingresa la contraseña para continuar:</p>
+            <input type="password" id="passwordInput" placeholder="Contraseña" maxlength="10">
+            <button onclick="checkPassword()" class="password-button">Ingresar</button>
+            <p id="errorMessage" class="error-message"></p>
+        </div>
+    </div>
+
     <img src="assets/cats.webp" alt="Gatitos" class="cats-image" onclick="createHearts()">
 
 
     <div class="container">
-        <h1 class="main-title">Hola, <br></h1>
-        <p class="subtitle">Rosas amarillas para iluminar tu día</p>
+        <h1 class="main-title">Hola, mi vida jsjs<br></h1>
+        <p class="subtitle">Esto es para ti, te quiero mucho</p>
         <button class="elegant-button" onclick="scrollToMessage()">
             <img src="assets/read.webp" alt="Leer mensaje">
         </button>
@@ -575,30 +813,30 @@
     <section id="message-section" class="message-section">
         <div class="message-container">
             <div class="message-card">
-                <h2 class="message-title">Para mi amor especial</h2>
+                <h2 class="message-title">Para mi primer y ultimo amor</h2>
                 <div class="message-content">
                     <div class="message-page active" data-page="1">
                         <p class="message-text">
-                            Querida mía, en este día especial quiero decirte que eres la luz que ilumina cada uno de mis días. 
-                            Tu sonrisa es como el sol que calienta mi corazón, y tu amor es el regalo más hermoso que he recibido.
+                            No se como empezar la verda, ni se como funciona lo de las flores amarillas, nunca he hecho esto antes y estoy un poco nervioso, desde el primer dia tuve miedo de cagarla ya me conoces.
+                            Ojala leas todo, si no es asi, lo repito, te amo mucho. Nunca habia usado tanto la palabra amor, se me hacia muy fuerte pero contigo descrubri lo mucho que puede expresar una palabra.
                         </p>
                     </div>
                     
                     <div class="message-page" data-page="2">
                         <p class="message-text">
-                            Cada momento a tu lado es una aventura, cada conversación es una melodía, y cada abrazo es mi refugio. 
-                            Eres mi compañera de vida, mi mejor amiga, y el amor de mi existencia.
+                            Cada conversacion, cada carita tuya, cada momento, cada todo de ti me hace enamorar cada vez mas. Amo cada parte de ti, cada detalle, cada cosa que haces. No puedes imaginar lo mucho que me haces feliz.
+                            Nunca pense poder ser capaz de sentir todo esto, me has enseñado a amar, a querer, a ser mejor, a ser mas feliz. Eres todo lo que quiero y mas.
                         </p>
                     </div>
                     
                     <div class="message-page" data-page="3">
                         <p class="message-text">
-                            Que este día esté lleno de momentos mágicos y que nuestro amor siga creciendo como las flores más hermosas. 
-                            Te amo infinitamente y para siempre.
+                            Eres lo mas bonito que me ha pasado en toda mi vida, no es ninguna broma, antes todo era oscuro pero desde que te conoci iluminaste mi todo, solo soy feliz contigo y no quiero que eso cambie nunca.
+                            No me imagino sin ti, no quiero que eso pase nunca, te amo te amo te amo jajsjsjs.
                         </p>
                         <div class="message-signature">
                             <p>Con todo mi amor,</p>
-                            <p class="signature-name">Tu novio</p>
+                            <p class="signature-name">Erick</p>
                         </div>
                     </div>
                 </div>
@@ -642,6 +880,46 @@
     <script>
         let currentPage = 1;
         const totalPages = 3;
+        const correctPassword = "2812";
+
+        // Password protection
+        function checkPassword() {
+            const passwordInput = document.getElementById('passwordInput');
+            const errorMessage = document.getElementById('errorMessage');
+            const passwordModal = document.getElementById('passwordModal');
+            
+            if (passwordInput.value === correctPassword) {
+                passwordModal.classList.add('hidden');
+                // Enable all content
+                document.body.style.overflow = 'auto';
+            } else {
+                errorMessage.textContent = 'Contraseña incorrecta. Inténtalo de nuevo.';
+                errorMessage.classList.add('show');
+                passwordInput.value = '';
+                passwordInput.focus();
+                
+                // Hide error message after 3 seconds
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Allow Enter key to submit password
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('passwordInput');
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+            
+            // Focus on password input when page loads
+            passwordInput.focus();
+            
+            // Disable scrolling until password is entered
+            document.body.style.overflow = 'hidden';
+        });
 
         function scrollToMessage() {
             const container = document.querySelector('.container');
@@ -704,25 +982,51 @@
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
             
-            for (let i = 0; i < 8; i++) {
+            // Crear más corazones distribuidos por toda la pantalla
+            const heartCount = 20; // Aumentamos el número de corazones
+            
+            for (let i = 0; i < heartCount; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
                     heart.className = 'heart-particle';
                     
-                    const angle = (i / 8) * Math.PI * 2;
-                    const distance = 60 + Math.random() * 40;
-                    const x = centerX + Math.cos(angle) * distance;
-                    const y = centerY + Math.sin(angle) * distance;
+                    // Distribución aleatoria por toda la pantalla
+                    const screenWidth = window.innerWidth;
+                    const screenHeight = window.innerHeight;
+                    
+                    // 50% de probabilidad de aparecer cerca de los gatos, 50% en cualquier lugar de la pantalla
+                    let x, y;
+                    if (Math.random() < 0.5) {
+                        // Cerca de los gatos
+                        const angle = (i / heartCount) * Math.PI * 2;
+                        const distance = 60 + Math.random() * 40;
+                        x = centerX + Math.cos(angle) * distance;
+                        y = centerY + Math.sin(angle) * distance;
+                    } else {
+                        // Distribución aleatoria por toda la pantalla
+                        x = Math.random() * screenWidth;
+                        y = Math.random() * screenHeight;
+                    }
+                    
+                    // Asegurar que los corazones estén dentro de la pantalla
+                    x = Math.max(20, Math.min(x, screenWidth - 20));
+                    y = Math.max(20, Math.min(y, screenHeight - 20));
                     
                     heart.style.left = x + 'px';
                     heart.style.top = y + 'px';
                     
-                    const size = 15 + Math.random() * 10;
+                    // Tamaños variados
+                    const size = 12 + Math.random() * 15;
                     heart.style.width = size + 'px';
                     heart.style.height = size + 'px';
                     
-                    const duration = 2 + Math.random() * 2;
+                    // Duraciones variadas para efecto más dinámico
+                    const duration = 2.5 + Math.random() * 3;
                     heart.style.animationDuration = duration + 's';
+                    
+                    // Rotación aleatoria inicial
+                    const rotation = Math.random() * 360;
+                    heart.style.transform = `rotate(${rotation}deg)`;
                     
                     document.body.appendChild(heart);
                     
@@ -731,7 +1035,7 @@
                             heart.parentNode.removeChild(heart);
                         }
                     }, duration * 1000);
-                }, i * 100);
+                }, i * 50); // Reducimos el delay para que aparezcan más rápido
             }
         }
 

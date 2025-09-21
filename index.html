@@ -958,6 +958,13 @@
                 newPageElement.classList.add('active');
                 
                 updatePageDisplay();
+                
+                // Ejecutar corazones automáticamente cuando llegue a la página 3
+                if (currentPage === 3) {
+                    setTimeout(() => {
+                        createHearts();
+                    }, 10000); // Pequeño delay para que se vea mejor
+                }
             }
         }
 
